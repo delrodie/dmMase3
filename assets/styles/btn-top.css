@@ -1,0 +1,67 @@
+.btn-gotop {
+    display: none;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: #0670b8;
+    bottom: 50px;
+    right: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.6s ease;
+    animation: beating 2s ease-in-out infinite;
+}
+
+.btn-gotop .bi {
+    font-weight: bold;
+}
+
+.btn-gotop:hover {
+    background: #383c4f;
+    color: white;
+}
+
+@media (max-width: 425px) {
+    .btn-gotop {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@keyframes beating {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.navbar.fixed-top{
+    background: #0670b8;
+    border-bottom: solid 0.05rem #383c4f;
+}
+
+.navbar.fixed-top a{
+    color: white;
+    transition: all 1s ease-in-out
+}
+
+.navbar.fixed-top a:hover{
+    color: #383c4f;
+}
+
+.navbar.fixed-top .dropdown-menu{
+    background: #0670b8;
+    border: 0;
+}

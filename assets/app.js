@@ -1,4 +1,5 @@
 import './stimulus_bootstrap.js';
+import './js/script.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -7,4 +8,4 @@ import './stimulus_bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+console.log('Bienvenue dans la console du site internet de MASE Côte d\'Ivoire! 🎉');
