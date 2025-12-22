@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <title>{% block title %}MASE Côte d'Ivoire{% endblock %}</title>
+        <link rel="icon" href="{{ absolute_url(asset('img/favico.png')) }}">
         {% block stylesheets %}
         {% endblock %}
 
@@ -12,6 +12,164 @@
         {% endblock %}
     </head>
     <body>
+    <div class="wrapper">
+        <header>
+
+            <section class="section-logo d-none d-lg-block" id="sectionLogo">
+                <div class="container">
+                    <div class="d-flex justify-content-center align-items-center align-content-center">
+                        <div class="my-4" data-aos="zoom-in" data-aos-duration="3000" data-aos-easing="linear">
+                            <a href="https://mase-cotedivoire.com/">
+                                <img src="{{ asset('img/logo-mase.png') }}" alt="Logo MASE Côte d'Ivoire" class="img-fluid"
+                                     loading="lazy" style="max-width: 200px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-menu" id="sectionMenu">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <a class="navbar-brand d-lg-none" href="#">
+                            <img src="{{ asset('img/logo-mase.png') }}" alt="" class="img-fluid" style="max-width: 150px;">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-around w-100 py-2">
+                                <li class="nav-item">
+                                    <a href="{{ path('app_home') }}" class="nav-link">
+                                        <i class="bi bi-house-fill"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        Qui sommes-nous?
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item py-2" href="#">Système de management</a></li>
+                                        <li><a class="dropdown-item py-2" href="#">Historique</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Pour qui?</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Comment?</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Actualités</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Espace Adhérents</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">Contact</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+        </header>
+
         {% block body %}{% endblock %}
+
+        <footer class="">
+            <div class="container mt-5" style="margin-top:150px">
+                <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+                    <div class="col presentation pe-md-4">
+                        <img src="{{ asset('img/logo-mase_bw.png') }}" alt="" class="img-fluid">
+                        <div class="mt-3" style="text-align: justify;">
+                            <div class="">
+                                Association à but non lucratif,
+                                Rattachée à MASE Méditerranée GIPHISE (Groupement Interprofessionnel pour la Prévention l’Hygiène Industrielle et la
+                                Sécurité dans les Entreprises), MASE France et international
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col px-md-3">
+                        <h5 class="mt-5">Rubriques</h5>
+                        <div class="row row-cols-2 g-4">
+                            <div class="col">
+                                <nav class="nav flex-column mt-3">
+                                    <a class="nav-link" href="#">Système de management</a>
+                                    <a class="nav-link" href="#">Historique</a>
+                                    <a class="nav-link" href="#">Pour qui?</a>
+                                </nav>
+                            </div>
+                            <div class="col">
+                                <nav class="nav flex-column mt-3">
+                                    <a class="nav-link" href="#">Comment?</a>
+                                    <a class="nav-link" href="#">Actualités</a>
+                                    <a class="nav-link" href="#">Espace Adhérents</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ps-md-3">
+                        <h5 class="mt-5">Contact</h5>
+                        <nav class="nav flex-column mt-3">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-geo-alt pe-2"></i> Port-Bouet Vridi zone industrielle
+                                Boulevard de Petit Bassam
+                            </a>
+                            <a class="nav-link my-0 py-0" href="#">
+                                <i class="bi bi-envelope-paper pe-2"></i> 01 BP 1269 ABJ 01
+                            </a>
+                            <a class="nav-link my-0 py-0" href="#">
+                                <i class="bi bi-telephone pe-2"></i> +225 27 21 237 927
+                            </a>
+                            <a class="nav-link my-0 py-0" href="#">
+                                <i class="bi bi-phone pe-2"></i> +225 27 21 237 927
+                            </a>
+                            <a class="nav-link my-0 py-0" href="#">
+                                <i class="bi bi-envelope-at pe-2"></i> leopold.akakpovi@sir.ci
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <a href="" class="text-white pe-2">
+                        <i class="bi bi-linkedin fs-1"></i>
+                    </a>
+                    <a href="#" class="text-white ps-2">
+                        <i class="bi bi-facebook fs-1"></i>
+                    </a>
+                </div>
+                <div class="copyright mt-5">
+                    <div class="row pt-2 pb-3">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            &COPY; 2020-2025 <a href="#" class="text-decoration-none">MASE Côte d'Ivoire</a> . Tous droits réservés.
+                        </div>
+                        <div class="col-6 col-md-3 text-start text-md-center mt-3 mt-md-0">
+                            <a href="#" class="text-decoration-none">Backoffice</a>
+                        </div>
+                        <div class="col-6 col-md-3 text-end mt-3 mt-md-0">
+                            By <a href="http://dreammaker-ci.com" class="text-decoration-none" target="_blank">Groupe Dream Maker</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Button go to top -->
+    <div class="btn-gotop">
+        <i class="bi bi-arrow-up"></i>
+    </div>
+    <!-- /Button go to top -->
+    {% block extra_javascripts %}
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+    {% endblock %}
     </body>
 </html>
