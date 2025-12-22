@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Services\GoogleAnalyticsService;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -11,35 +12,39 @@ use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/backend', routeName: 'app_backend')]
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(
+        private readonly GoogleAnalyticsService $gaService,
+        private readonly string $gaPropertyId,
+    )
+    {
+    }
+
     public function index(): Response
     {
-//        return parent::index();
+        // Récupération des données Google Anlaytics
+        $visitors30days = $this->gaService->getVisitors($this->gaPropertyId);
+        $visitorsByDay = $this->gaService->getVisitorsByDay($this->gaPropertyId, 30);
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // 1.1) If you have enabled the "pretty URLs" feature:
-        // return $this->redirectToRoute('admin_user_index');
-        //
-        // 1.2) Same example but using the "ugly URLs" that were used in previous EasyAdmin versions:
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        // Calculer les visiteurs des 7 derniers jours pour comparaison
+        $visitors7days = array_sum(array_slice($visitorsByDay, -7, 7, true));
 
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirectToRoute('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-         return $this->render('backend/dashboard.html.twig');
+        //Calcluler le pourcentage de changement (optionnel)
+        $previousWeek = array_sum(array_slice($visitorsByDay, -14, 7, true));
+        $percentageChange = $previousWeek > 0
+            ? round((($visitors7days - $previousWeek) / $previousWeek) * 100, 1)
+            : 0;
+         return $this->render('backend/dashboard.html.twig',[
+             'visitors_30_days' => $visitors30days,
+             'visitors_7_days' => $visitors7days,
+             'visitors_by_day' => $visitorsByDay,
+             'percentage_change' => $percentageChange
+         ]);
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Mase');
+            ->setTitle('Mase - BackOffice');
     }
 
     public function configureMenuItems(): iterable

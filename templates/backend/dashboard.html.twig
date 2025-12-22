@@ -1,4 +1,155 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}
+    <h1 class="title">
+        <i class="fa fa-chart-line"></i> Tableau de bord
+    </h1>
+{% endblock %}
+
 {% block main %}
-    <h4 class="h4">Tableau de bord</h4>
+    <div class="row">
+        <!-- Card: Visiteurs 30 jours -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Visiteurs (30 jours)</h6>
+                            <h2 class="mb-0">{{ visitors_30_days|number_format(0, ',', ' ') }}</h2>
+                        </div>
+                        <div class="text-primary" style="font-size: 3rem; opacity: 0.5;">
+                            <i class="fa fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Visiteurs 7 jours -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Visiteurs (7 jours)</h6>
+                            <h2 class="mb-0">{{ visitors_7_days|number_format(0, ',', ' ') }}</h2>
+                            {% if percentage_change != 0 %}
+                                <small class="{% if percentage_change > 0 %}text-success{% else %}text-danger{% endif %}">
+                                    <i class="fa fa-arrow-{% if percentage_change > 0 %}up{% else %}down{% endif %}"></i>
+                                    {{ percentage_change|abs }}% vs semaine précédente
+                                </small>
+                            {% endif %}
+                        </div>
+                        <div class="text-success" style="font-size: 3rem; opacity: 0.5;">
+                            <i class="fa fa-user-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Moyenne journalière -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-2">Moyenne / jour (7j)</h6>
+                            <h2 class="mb-0">{{ (visitors_7_days / 7)|number_format(0, ',', ' ') }}</h2>
+                        </div>
+                        <div class="text-info" style="font-size: 3rem; opacity: 0.5;">
+                            <i class="fa fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphique des visiteurs -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fa fa-chart-area"></i> Évolution des visiteurs (30 derniers jours)
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="visitorsChart" style="max-height: 400px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('visitorsChart').getContext('2d');
+
+            // Préparer les données
+            const visitorData = {{ visitors_by_day|json_encode|raw }};
+            const labels = Object.keys(visitorData).map(date => {
+                // Formater la date YYYYMMDD en DD/MM
+                const year = date.substring(0, 4);
+                const month = date.substring(4, 6);
+                const day = date.substring(6, 8);
+                return `${day}/${month}`;
+            });
+            const data = Object.values(visitorData);
+
+            // Créer le graphique
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Visiteurs actifs',
+                        data: data,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .card {
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .shadow-sm {
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075) !important;
+        }
+    </style>
 {% endblock %}

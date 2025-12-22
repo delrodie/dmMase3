@@ -7,6 +7,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    google_analytics_key_path: '%kernel.project_dir%/config/google/mase-ci-fdee89e5265e.json'
+    google_analytics_property_id: '517208948' # Remplacez par votre vrai Property ID
 
 services:
     # default configuration for services in *this* file
@@ -21,3 +23,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Configuration Google Analytics Service
+    App\Services\GoogleAnalyticsService:
+        arguments:
+            $credentialsPath: '%google_analytics_key_path%'
+
+    # Configuration Dashboard Controller
+    App\Controller\Backend\DashboardController:
+        arguments:
+            $gaPropertyId: '%google_analytics_property_id%'
