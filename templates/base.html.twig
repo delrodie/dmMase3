@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}MASE Côte d'Ivoire{% endblock %}</title>
         <link rel="icon" href="{{ absolute_url(asset('img/favico.png')) }}">
         {% block stylesheets %}
@@ -62,24 +63,24 @@
                                         Qui sommes-nous?
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item py-2" href="#">Système de management</a></li>
-                                        <li><a class="dropdown-item py-2" href="#">Historique</a></li>
+                                        <li><a class="dropdown-item py-2" href="{{ path('app_frontend_qsn_management') }}">Système de management</a></li>
+                                        <li><a class="dropdown-item py-2" href="{{ path('app_frontend_qsn_historique') }}">Historique</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Pour qui?</a>
+                                    <a href="{{ path('app_frontend_pourqui') }}" class="nav-link">Pour qui?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Comment?</a>
+                                    <a href="{{ path('app_frontend_comment') }}" class="nav-link">Comment?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Actualités</a>
+                                    <a href="{{ path('app_frontend_actualite_list') }}" class="nav-link">Actualités</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Espace Adhérents</a>
+                                    <a href="{{ path('app_frontend_espace_adherent') }}" class="nav-link">Espace Adhérents</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Contact</a>
+                                    <a href="{{ path('app_frontend_adhesion') }}" class="nav-link">Contact</a>
                                 </li>
 
                             </ul>
@@ -111,38 +112,21 @@
                                 <nav class="nav flex-column mt-3">
                                     <a class="nav-link" href="#">Système de management</a>
                                     <a class="nav-link" href="#">Historique</a>
-                                    <a class="nav-link" href="#">Pour qui?</a>
+                                    <a class="nav-link" href="{{ path('app_frontend_pourqui') }}">Pour qui?</a>
                                 </nav>
                             </div>
                             <div class="col">
                                 <nav class="nav flex-column mt-3">
-                                    <a class="nav-link" href="#">Comment?</a>
-                                    <a class="nav-link" href="#">Actualités</a>
-                                    <a class="nav-link" href="#">Espace Adhérents</a>
+                                    <a class="nav-link" href="{{ path('app_frontend_comment') }}">Comment?</a>
+                                    <a class="nav-link" href="{{ path('app_frontend_actualite_list') }}">Actualités</a>
+                                    <a class="nav-link" href="{{ path('app_frontend_espace_adherent') }}">Espace Adhérents</a>
                                 </nav>
                             </div>
                         </div>
                     </div>
                     <div class="col ps-md-3">
                         <h5 class="mt-5">Contact</h5>
-                        <nav class="nav flex-column mt-3">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-geo-alt pe-2"></i> Port-Bouet Vridi zone industrielle
-                                Boulevard de Petit Bassam
-                            </a>
-                            <a class="nav-link my-0 py-0" href="#">
-                                <i class="bi bi-envelope-paper pe-2"></i> 01 BP 1269 ABJ 01
-                            </a>
-                            <a class="nav-link my-0 py-0" href="#">
-                                <i class="bi bi-telephone pe-2"></i> +225 27 21 237 927
-                            </a>
-                            <a class="nav-link my-0 py-0" href="#">
-                                <i class="bi bi-phone pe-2"></i> +225 27 21 237 927
-                            </a>
-                            <a class="nav-link my-0 py-0" href="#">
-                                <i class="bi bi-envelope-at pe-2"></i> leopold.akakpovi@sir.ci
-                            </a>
-                        </nav>
+                        {{ render(url('app_frontend_coordonnee')) }}
                     </div>
                 </div>
                 <div class="text-center mt-5">

@@ -1,0 +1,38 @@
+{% if coordonnee %}
+    <nav class="nav flex-column mt-3">
+        <a class="nav-link" href="#">
+            <i class="bi bi-geo-alt pe-2"></i> {{ coordonnee.lieu }}
+        </a>
+        <a class="nav-link my-0 py-0" href="#">
+            <i class="bi bi-envelope-paper pe-2"></i> {{ coordonnee.bp }}
+        </a>
+        <a class="nav-link my-0 py-0" href="tel:{{ coordonnee.tel }}">
+            <i class="bi bi-telephone pe-2"></i> {{ coordonnee.tel }}
+        </a>
+        <a class="nav-link my-0 py-0" href="tel:{{ coordonnee.phone }}">
+            <i class="bi bi-phone pe-2"></i> {{ coordonnee.phone }}
+        </a>
+        <a class="nav-link my-0 py-0" href="mailto:{{ coordonnee.email }}">
+            <i class="bi bi-envelope-at pe-2"></i> {{coordonnee.email}}
+        </a>
+    </nav>
+{% else %}
+    <nav class="nav flex-column mt-3">
+        <a class="nav-link" href="#">
+            <i class="bi bi-geo-alt pe-2"></i> Port-Bouet Vridi zone industrielle
+            Boulevard de Petit Bassam
+        </a>
+        <a class="nav-link my-0 py-0" href="#">
+            <i class="bi bi-envelope-paper pe-2"></i> 01 BP 1269 ABJ 01
+        </a>
+        <a class="nav-link my-0 py-0" href="#">
+            <i class="bi bi-telephone pe-2"></i> +225 27 21 237 927
+        </a>
+        <a class="nav-link my-0 py-0" href="#">
+            <i class="bi bi-phone pe-2"></i> +225 27 21 237 927
+        </a>
+        <a class="nav-link my-0 py-0" href="#">
+            <i class="bi bi-envelope-at pe-2"></i> leopold.akakpovi@sir.ci
+        </a>
+    </nav>
+{% endif %}

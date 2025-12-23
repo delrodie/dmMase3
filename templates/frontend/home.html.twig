@@ -5,15 +5,11 @@
         <section class="slider" id="slider">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./assets/img/slide/cover2-1740660574.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/slide/01.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/img/slide/02.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    {% for slide in slides %}
+                        <div class="carousel-item {{ loop.first ? 'active' : ''}}">
+                            <img src="{{ asset('uploads/slides/'~ slide.media) }}" class="d-block w-100" alt="Mase Côte d'Ivoire">
+                        </div>
+                    {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                         data-bs-slide="prev">
@@ -28,135 +24,79 @@
             </div>
         </section>
 
-        <section class="partenaires" id="partenaires" style="margin-top:100px">
-            <div class="container my-5"data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
-                <h3 class="fw-lighter text-uppercase my-4">Partenaires</h3>
-                <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-6 g-4">
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
-                    </div>
-                    <div class="col">
-                        <figure class="overflow-hidden">
-                            <img src="./assets/img/logo-mase.png" alt="" class="img-fluid">
-                        </figure>
+        {% if partenaires %}
+            <section class="partenaires" id="partenaires" style="margin-top:100px">
+                <div class="container my-5"data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
+                    <h3 class="fw-lighter text-uppercase my-4">Partenaires</h3>
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-6 g-4">
+                        {% for partenaire in partenaires %}
+                            <div class="col">
+                                <figure class="overflow-hidden">
+                                    <img src="{{ asset('uploads/partenaires/' ~ partenaire.media) }}" alt="{{ partenaire.nom }}" class="img-fluid">
+                                </figure>
+                            </div>
+                        {% endfor %}
+
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        {% endif %}
 
-        <section class="presentation" id="presentation" style="margin: 100px auto;">
-            <div class="container mt-5" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">
-                <div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center align-items-center align-content-center">
-                    <div class="col order-1 order-md-0">
-                        <h3 class="h3 fw-bold mb-4" style="font-family: var(--text-family-poppins)">Système de management</h3>
-                        <div class="section-content" style="text-align: justify;">
-                            <div>
-                                MASE est un système de management dont l’objectif est l’amélioration permanente et continue des performances Sécurité Santé Environnement des entreprises. Nous sommes convaincus qu’une société qui s’approprie un système de management SSE ne peut que bénéficier d’impacts positifs sur l’ensemble de son organisation et sur l’ensemble de ses résultats.
+
+        {% if management %}
+            <section class="presentation" id="presentation" style="margin: 100px auto;">
+                <div class="container mt-5" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">
+                    <div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center align-items-center align-content-center">
+                        <div class="col order-1 order-md-0">
+                            <h3 class="h3 fw-bold mb-4" style="font-family: var(--text-family-poppins)">{{management.titre}}</h3>
+                            <div class="section-content" style="text-align: justify;">
+                                {{ management.contenu|slice(0,200)|raw }}
                             </div>
-                            <div>
-                                MASE place les femmes et les hommes au cœur du management.
-                            </div>
+                            <a href="#" class="btn btn-main rounded-0 px-4 py-2 mt-5">Rejoignez-nous</a>
                         </div>
-                        <a href="#" class="btn btn-main rounded-0 px-4 py-2 mt-5">Rejoignez-nous</a>
-                    </div>
-                    <div class="col order-0 order-md-1" data-aos="fade-up" data-aos-duration="3000">
-                        <div class="presentation-illustration">
-                            <figure class="overflow-hidden">
-                                <img src="./assets/img/referentiel.png" alt="" class="img-fluid">
-                            </figure>
+                        <div class="col order-0 order-md-1" data-aos="fade-up" data-aos-duration="3000">
+                            <div class="presentation-illustration">
+                                <figure class="overflow-hidden">
+                                    <img src="{{ asset('uploads/qsn/' ~ management.media) }}" alt="{{ management.titre }}" class="img-fluid">
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        {% endif %}
 
-        <section class="actualites" id="actualites" style="margin: 150px auto;">
-            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">
-                <h3 class="fw-lighter text-uppercase my-5">Dernières actualités</h3>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                    <div class="col actualite-item">
-                        <div class="card h-100 rounded-0">
-                            <div class="card-body">
-                                <a href="#">
-                                    <figure class="overflow-hidden">
-                                        <img src="./assets/img/actualites/01.png" alt="" class="card-img w-100">
-                                    </figure>
-                                </a>
+        {% if actualites %}
+            <section class="actualites" id="actualites" style="margin: 150px auto;">
+                <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">
+                    <h3 class="fw-lighter text-uppercase my-5">Dernières actualités</h3>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                        {% for actualite in actualites %}
+                            <div class="col actualite-item">
+                                <div class="card h-100 rounded-0">
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <figure class="overflow-hidden">
+                                                <img src="{{ asset('uploads/pages/' ~ actualite.media) }}" alt="{{ actualite.titre }}" class="card-img w-100">
+                                            </figure>
+                                        </a>
 
-                                <h4 class="card-title fw-lighter my-4">
-                                    <a href="#" class="text-decoration-none">Processus de certification</a>
-                                </h4>
+                                        <h4 class="card-title fw-lighter my-4">
+                                            <a href="#" class="text-decoration-none">{{ actualite.titre }}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="card-footer border-top-0 bg-white">
+                                        <a href="#" class="btn btn-outline-success btn-sm rounded-0 px-5">Lire la
+                                            suite...</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer border-top-0 bg-white">
-                                <a href="#" class="btn btn-outline-success btn-sm rounded-0 px-5">Lire la
-                                    suite...</a>
-                            </div>
-                        </div>
+                        {% endfor %}
+
                     </div>
-                    <div class="col actualite-item">
-                        <div class="card h-100 rounded-0">
-                            <div class="card-body">
-                                <a href="#">
-                                    <figure class="overflow-hidden">
-                                        <img src="./assets/img/actualites/02.jpg" alt="" class="card-img w-100">
-                                    </figure>
-                                </a>
-
-                                <h4 class="card-title fw-lighter my-4">
-                                    <a href="#" class="text-decoration-none">Processus de certification</a>
-                                </h4>
-                            </div>
-                            <div class="card-footer border-top-0 bg-white">
-                                <a href="#" class="btn btn-outline-success btn-sm rounded-0 px-5">Lire la
-                                    suite...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col actualite-item">
-                        <div class="card h-100 rounded-0">
-                            <div class="card-body">
-                                <a href="#">
-                                    <figure class="overflow-hidden">
-                                        <img src="./assets/img/actualites/03.jpg" alt="" class="card-img w-100">
-                                    </figure>
-                                </a>
-
-                                <h4 class="card-title fw-lighter my-4">
-                                    <a href="#" class="text-decoration-none">Processus de certification</a>
-                                </h4>
-                            </div>
-                            <div class="card-footer border-top-0 bg-white">
-                                <a href="#" class="btn btn-outline-success btn-sm rounded-0 px-5">Lire la
-                                    suite...</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+            </section>
+        {% endif %}
 
         <section class="statistiques" id="statistiques">
             <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">

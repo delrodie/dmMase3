@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+
+        <section class="page" id="page" style="margin-top:100px">
+            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
+                {% if articles %}
+
+                    <div class="container py-5">
+
+                        {% for article in articles %}
+                            {% set left = loop.index is odd %}
+                            {% set circleColor = left ? '#0670b8' : '#0d855d' %}
+
+                            <div class="row align-items-center mb-5">
+
+                                {# CONTENU GAUCHE (desktop) #}
+                                <div class="
+                col-md-5
+                d-block d-md-block
+                {{ left ? 'text-end' : '' }}
+                order-2 order-md-1
+            ">
+                                    {% if left %}
+                                        <div class="p-4 bg-white shadow rounded-4">
+                                            <p class="mb-0 text-muted">
+                                                {{ article.contenu|raw }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {# COLONNE CENTRALE (DATE) #}
+                                <div class="
+                col-12 col-md-2
+                d-flex justify-content-center
+                position-relative
+                order-1 order-md-2
+                mb-3 mb-md-0
+            ">
+
+                                    {# ligne verticale desktop #}
+                                    <div class="
+                    position-absolute top-0 start-50 translate-middle-x
+                    h-100 border-start d-none d-md-block
+                "></div>
+
+                                    {# cercle année #}
+                                    <div class="
+                    rounded-circle text-white shadow
+                    d-flex align-items-center justify-content-center
+                    fw-bold
+                "
+                                         style="
+                                             width:80px;
+                                             height:80px;
+                                             background-color: {{ circleColor }};
+                                             font-size: 1.2rem;">
+                                        {{ article.annee }}
+                                    </div>
+                                </div>
+
+                                {# CONTENU DROIT + MOBILE #}
+                                <div class="
+                col-12 col-md-5
+                order-2 order-md-3
+                {{ not left ? '' : 'd-none d-md-block' }}
+            ">
+                                    {% if not left  %}
+                                        <div class="p-4 bg-white shadow rounded-4 text-md-start text-center">
+                                            <p class="mb-0 text-muted">
+                                                {{ article.contenu|raw }}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+
+
+
+                {% else %}
+
+                    <h1 class="h1 text-center my-5 fst-italic text-success">
+                        <i class="bi bi-exclamation-triangle"></i> Page en maintenance
+                    </h1>
+
+                {% endif %}
+
+
+            </div>
+        </section>
+
+
+
+    </main>
+{% endblock %}
+
+{% block title %}
+ Historique
+{% endblock %}
+

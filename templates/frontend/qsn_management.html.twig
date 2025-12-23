@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+
+        <section class="page" id="page" style="margin-top:100px">
+            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
+                {% if article %}
+
+                    <h3 class="fw-lighter text-uppercase my-4">{{ article ? article.titre }}</h3>
+                    <div class="position-relative">
+                        {% if article and article.media %}
+                            <figure class="overflow-hidden position-relative">
+                                <img src="{{ asset('uploads/qsn/' ~ article.media) }}" alt="{{ article.media }}" class="img-fluid float-start me-3" style="max-width:500px ">
+                                {{ article ? article.contenu|raw  }}
+                            </figure>
+                        {% endif %}
+                    </div>
+
+                {% else %}
+
+                    <h1 class="h1 text-center my-5 fst-italic text-success">
+                        <i class="bi bi-exclamation-triangle"></i> Page en maintenance
+                    </h1>
+
+                {% endif %}
+
+
+            </div>
+        </section>
+
+
+
+    </main>
+{% endblock %}
+
+{% block title %}
+    {{ article ? article.titre  }}
+{% endblock %}
+

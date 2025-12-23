@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+
+        <section class="actualites" id="actualites" style="margin: 100px auto;">
+            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">
+                {% if actualites %}
+
+                    <h3 class="fw-lighter text-uppercase my-5">Dernières actualités</h3>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                        {% for actualite in actualites %}
+                            <div class="col actualite-item">
+                                <div class="card h-100 rounded-0">
+                                    <div class="card-body">
+                                        <a href="{{ path('app_frontend_actualite_show', {'slug': actualite.slug}) }}">
+                                            <figure class="overflow-hidden">
+                                                <img src="{{ asset('uploads/pages/' ~ actualite.media) }}" alt="{{ actualite.titre }}" class="card-img w-100">
+                                            </figure>
+                                        </a>
+
+                                        <h4 class="card-title fw-lighter my-4">
+                                            <a href="{{ path('app_frontend_actualite_show', {'slug': actualite.slug}) }}" class="text-decoration-none">{{ actualite.titre }}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="card-footer border-top-0 bg-white">
+                                        <a href="{{ path('app_frontend_actualite_show', {'slug': actualite.slug}) }}" class="btn btn-outline-success btn-sm rounded-0 px-5">Lire la
+                                            suite...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+
+                {% else %}
+
+                    <h1 class="h1 text-center my-5 fst-italic text-success">
+                        <i class="bi bi-exclamation-triangle"></i> Page en maintenance
+                    </h1>
+
+                {% endif %}
+            </div>
+        </section>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+ Nos actualités
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <main>
+
+        <section class="page" id="page" style="margin-top:100px">
+            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
+                <h3 class="fw-lighter text-uppercase my-4">Espace Adhérents</h3>
+                <div
+                    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 d-flex justify-content-center align-items-center align-content-center mt-3">
+                    <div class="col d-grid gap-2">
+                        <a href="{{ path('app_login') }}" class="btn btn-main rounded-0 px-4 py-5 fs-5 text-nowrap">Connectez-vous en
+                            cliquant ici</a>
+                    </div>
+                    <div class="col d-grid gap-2">
+                        <a href="{{ path('app_frontend_adhesion') }}" class="btn btn-vert rounded-0 px-4 py-5 fs-5 text-nowrap">Pas encore adhérent?
+                            Réjoignez-nous</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="presentation" id="presentation" style="margin: 100px auto;">
+            <div class="container mt-5" data-aos="fade-up" data-aos-duration="2000" data-aos-easing="ease-in-out">
+                <h3 class="h3 fw-semibold mb-4 mt-5" style="font-family: var(--text-family-poppins)">
+                    Retrouvez tous les documents de MASE à télécharger dans l'espace Adhérents
+                </h3>
+                <div
+                    class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center align-content-center mt-3">
+
+                    <div class="col" data-aos="fade-up" data-aos-duration="3000">
+                        <div class="">
+                            <figure class="overflow-hidden">
+                                <img src="{{ asset('img/referentiel.png') }}" alt="" class="img-fluid">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="col" data-aos="fade-up" data-aos-duration="3000">
+                        <div class="">
+                            <figure class="overflow-hidden">
+                                <img src="{{ asset('img/referentiel.png') }}" alt="" class="img-fluid">
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}
+
+{% block title %}
+ Espace Adhérent
+{% endblock %}
+
