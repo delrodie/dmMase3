@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\Historique;
 use App\Entity\Management;
+use App\Entity\PourQui;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
@@ -48,7 +49,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
         // Gestion de management
         if ($entity instanceof Management){
-            $entity->setSlug(new AsciiSlugger()->slug($entity->getTitre()));
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
             $entity->setCreatedBy($user?->getUserIdentifier());
             $this->entityManager->flush();
         }
@@ -56,6 +57,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         // Gestion des historiques
         if ($entity instanceof Historique){
             $entity->setCreatedBy($user?->getUserIdentifier());
+            $this->entityManager->flush();
+        }
+
+        // Gestion des cibles
+        if ($entity instanceof PourQui){
+            $entity->setCreatedBy($user?->getUserIdentifier());
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
             $this->entityManager->flush();
         }
 
@@ -73,7 +81,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
 
         if ($entity instanceof Management){
-            $entity->setSlug(new AsciiSlugger()->slug($entity->getTitre()));
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
             $entity->setUpdatedBy($user?->getUserIdentifier());
             $this->entityManager->flush();
         }
@@ -81,6 +89,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         // Gestion des historiques
         if ($entity instanceof Historique){
             $entity->setUpdatedBy($user?->getUserIdentifier());
+            $this->entityManager->flush();
+        }
+
+        // Gestion des cibles
+        if ($entity instanceof  PourQui){
+            $entity->setUpdatedBy($user?->getUserIdentifier());
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
             $this->entityManager->flush();
         }
     }

@@ -5,6 +5,7 @@ namespace App\Controller\Backend;
 use App\Entity\Historique;
 use App\Entity\Management;
 use App\Entity\Partenaire;
+use App\Entity\PourQui;
 use App\Entity\Slide;
 use App\Entity\User;
 use App\Services\GoogleAnalyticsService;
@@ -56,7 +57,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-        // <i class="fa-solid fa-gears"></i>
+        // <i class=""></i>
 
         yield MenuItem::section('');
         yield MenuItem::section('Rubrique');
@@ -67,6 +68,8 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Système de management', 'fa-solid fa-gears', Management::class),
                 MenuItem::linkToCrud('Historique', 'fa-solid fa-clock-rotate-left', Historique::class),
             ]);
+
+        yield MenuItem::linkToCrud('Pour qui', 'fa-solid fa-arrows-down-to-people', PourQui::class);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');

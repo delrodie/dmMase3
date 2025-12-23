@@ -27,3 +27,5 @@
 !/public/uploads/partenaires/.gitkeep
 /public/uploads/qsn
 !/public/uploads/qsn/.gitkeep
+/public/uploads/pages
+!/public/uploads/pages/.gitkeep
