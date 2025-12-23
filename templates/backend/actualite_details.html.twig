@@ -1,0 +1,71 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}
+    <h1 class="title">
+        <i class="fa-regular fa-newspaper"></i> Actualités
+    </h1>
+{% endblock %}
+
+{% block main %}
+    {% set actualite = entity.instance %}
+    <div class="row">
+        <div class="col-md-10 col-lg-8 offset-md-1 offset-lg-2 mt-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="h5 mb-3">{{ actualite.titre }}</h5>
+                    <div class="text-center mb-3">
+                        <img src="{{ asset('uploads/pages/' ~ actualite.media) }}" alt="" class="img-fluid p-3">
+                    </div>
+
+                    {{ actualite.contenu|raw }}
+
+                    <div class="row mt-5">
+                        <div class="col-12 mt-3">
+                            <small class="text-muted mt-3 me-3">Actif</small>
+                            {% if actualite.actif %}
+                                <div class="badge text-bg-success">OUI</div>
+                            {% else %}
+                                <div class="badge text-bg-danger">NON</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div>
+                                <small class="text-muted mt-3">Crée par:</small>
+                                {{ actualite.createdBy }}
+                            </div>
+                            <div>
+                                <small class="text-muted mt-3">Crée le:</small>
+                                {{ actualite.createdAt|date('d/m/Y H:i:s') }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            {% if actualite.updatedBy %}
+                                <div>
+                                    <small class="text-muted mt-3">Modifié par:</small>
+                                    {{ actualite.updatedBy }}
+                                </div>
+                            {% endif %}
+                            {% if actualite.updatedAt %}
+                                <div>
+                                    <small class="text-muted mt-3">Modifié le:</small>
+                                    {{ actualite.updatedAt|date('d/m/Y H:i:s') }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-end mt-5">
+                <a href="{{ path('app_backend_actualite_index') }}" class="btn btn-secondary rounded-0 px-5">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                    Retour à la liste
+                </a>
+                <a href="{{ path('app_backend_actualite_edit', {'entityId': actualite.id}) }}" class="btn btn-primary rounded-0 px-5">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    Modifier
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

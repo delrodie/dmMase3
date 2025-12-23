@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Actualite;
 use App\Entity\Comment;
 use App\Entity\Historique;
 use App\Entity\Management;
@@ -58,7 +59,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
-        // <i class=""></i>
+        // <i class="fa-regular fa-newspaper"></i>
 
         yield MenuItem::section('');
         yield MenuItem::section('Rubriques');
@@ -72,6 +73,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('Pour qui', 'fa-solid fa-arrows-down-to-people', PourQui::class);
         yield MenuItem::linkToCrud('Comment', 'fa-solid fa-person-circle-question', Comment::class);
+        yield MenuItem::linkToCrud('Actualités', 'fa-regular fa-newspaper', Actualite::class);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');
