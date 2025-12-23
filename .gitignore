@@ -25,3 +25,5 @@
 /public/uploads/slides/
 /public/uploads/partenaires/
 !/public/uploads/partenaires/.gitkeep
+/public/uploads/qsn
+!/public/uploads/qsn/.gitkeep

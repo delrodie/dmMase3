@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Management;
 use App\Entity\Partenaire;
 use App\Entity\Slide;
 use App\Entity\User;
@@ -59,6 +60,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Rubrique');
         yield MenuItem::linkToCrud('Slide', 'fa-solid fa-images', Slide::class);
         yield MenuItem::linkToCrud('Partenaire', 'fa-regular fa-handshake', Partenaire::class);
+
+        yield MenuItem::subMenu('Qui sommes-nous', 'fa-solid fa-person-chalkboard')->setSubItems([
+                MenuItem::linkToCrud('Système de management', 'fa fa-tags', Management::class),
+            ]);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');
