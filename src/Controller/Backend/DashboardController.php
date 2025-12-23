@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Historique;
 use App\Entity\Management;
 use App\Entity\Partenaire;
 use App\Entity\Slide;
@@ -55,6 +56,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        // <i class="fa-solid fa-gears"></i>
 
         yield MenuItem::section('');
         yield MenuItem::section('Rubrique');
@@ -62,7 +64,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Partenaire', 'fa-regular fa-handshake', Partenaire::class);
 
         yield MenuItem::subMenu('Qui sommes-nous', 'fa-solid fa-person-chalkboard')->setSubItems([
-                MenuItem::linkToCrud('Système de management', 'fa fa-tags', Management::class),
+                MenuItem::linkToCrud('Système de management', 'fa-solid fa-gears', Management::class),
+                MenuItem::linkToCrud('Historique', 'fa-solid fa-clock-rotate-left', Historique::class),
             ]);
 
         yield MenuItem::section('');

@@ -2,20 +2,28 @@
 
 namespace App\Controller\Backend;
 
-use App\Entity\Management;
+use App\Entity\Historique;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ManagementCrudController extends AbstractCrudController
+class HistoriqueCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Management::class;
+        return Historique::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['annee' => 'ASC'])
+            ;
     }
 
 
@@ -25,15 +33,11 @@ class ManagementCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
 
             FormField::addColumn('col-md-10 offset-md-1 mt-5'),
-            TextField::new('Titre', 'Titre'),
-            TextEditorField::new('contenu', 'Contenu')
-                ->setTemplatePath('backend/fields/contenu.html.twig')
+            NumberField::new('annee')
+                ->setColumns('col-md-4')
             ,
-            ImageField::new('media', 'Télécharger l\'illustration')
-                ->setUploadDir('public/uploads/qsn/')
-                ->setBasePath('uploads/qsn')
-                ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
-//                ->setColumns('col-md-8')
+            TextEditorField::new('contenu')
+                ->setTemplatePath('backend/fields/contenu.html.twig')
             ,
             BooleanField::new('statut'),
         ];

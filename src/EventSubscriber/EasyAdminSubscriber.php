@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Historique;
 use App\Entity\Management;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,8 +46,15 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             $this->entityManager->flush();
         }
 
+        // Gestion de management
         if ($entity instanceof Management){
             $entity->setSlug(new AsciiSlugger()->slug($entity->getTitre()));
+            $entity->setCreatedBy($user?->getUserIdentifier());
+            $this->entityManager->flush();
+        }
+
+        // Gestion des historiques
+        if ($entity instanceof Historique){
             $entity->setCreatedBy($user?->getUserIdentifier());
             $this->entityManager->flush();
         }
@@ -66,6 +74,12 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
         if ($entity instanceof Management){
             $entity->setSlug(new AsciiSlugger()->slug($entity->getTitre()));
+            $entity->setUpdatedBy($user?->getUserIdentifier());
+            $this->entityManager->flush();
+        }
+
+        // Gestion des historiques
+        if ($entity instanceof Historique){
             $entity->setUpdatedBy($user?->getUserIdentifier());
             $this->entityManager->flush();
         }
