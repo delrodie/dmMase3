@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Partenaire;
 use App\Entity\Slide;
 use App\Entity\User;
 use App\Services\GoogleAnalyticsService;
@@ -56,7 +57,8 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('');
         yield MenuItem::section('Rubrique');
-        yield MenuItem::linkToCrud('Slide', 'fa fa-picture', Slide::class);
+        yield MenuItem::linkToCrud('Slide', 'fa-solid fa-images', Slide::class);
+        yield MenuItem::linkToCrud('Partenaire', 'fa-regular fa-handshake', Partenaire::class);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');

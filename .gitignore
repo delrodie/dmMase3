@@ -23,3 +23,5 @@
 /config/google/*.json
 !/public/uploads/slides/.gitkeep
 /public/uploads/slides/
+/public/uploads/partenaires/
+!/public/uploads/partenaires/.gitkeep
