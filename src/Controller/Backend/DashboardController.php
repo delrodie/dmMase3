@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Slide;
 use App\Entity\User;
 use App\Services\GoogleAnalyticsService;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -52,6 +53,12 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+
+        yield MenuItem::section('');
+        yield MenuItem::section('Rubrique');
+        yield MenuItem::linkToCrud('Slide', 'fa fa-picture', Slide::class);
+
+        yield MenuItem::section('');
         yield MenuItem::section('Sécurité');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class);
     }

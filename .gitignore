@@ -21,3 +21,5 @@
 
 .idea
 /config/google/*.json
+!/public/uploads/slides/.gitkeep
+/public/uploads/slides/
