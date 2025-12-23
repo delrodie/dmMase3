@@ -2,6 +2,7 @@
 
 namespace App\Controller\Backend;
 
+use App\Entity\Comment;
 use App\Entity\Historique;
 use App\Entity\Management;
 use App\Entity\Partenaire;
@@ -60,7 +61,7 @@ class DashboardController extends AbstractDashboardController
         // <i class=""></i>
 
         yield MenuItem::section('');
-        yield MenuItem::section('Rubrique');
+        yield MenuItem::section('Rubriques');
         yield MenuItem::linkToCrud('Slide', 'fa-solid fa-images', Slide::class);
         yield MenuItem::linkToCrud('Partenaire', 'fa-regular fa-handshake', Partenaire::class);
 
@@ -70,6 +71,7 @@ class DashboardController extends AbstractDashboardController
             ]);
 
         yield MenuItem::linkToCrud('Pour qui', 'fa-solid fa-arrows-down-to-people', PourQui::class);
+        yield MenuItem::linkToCrud('Comment', 'fa-solid fa-person-circle-question', Comment::class);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');

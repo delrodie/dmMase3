@@ -2,6 +2,7 @@
 
 namespace App\EventSubscriber;
 
+use App\Entity\Comment;
 use App\Entity\Historique;
 use App\Entity\Management;
 use App\Entity\PourQui;
@@ -67,6 +68,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             $this->entityManager->flush();
         }
 
+        // Gestion des comments
+        if ($entity instanceof Comment){
+            $entity->setCreatedBy($user?->getUserIdentifier());
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
+            $this->entityManager->flush();
+        }
+
 
     }
 
@@ -94,6 +102,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
         // Gestion des cibles
         if ($entity instanceof  PourQui){
+            $entity->setUpdatedBy($user?->getUserIdentifier());
+            $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
+            $this->entityManager->flush();
+        }
+
+        // Gestion des comments
+        if ($entity instanceof  Comment){
             $entity->setUpdatedBy($user?->getUserIdentifier());
             $entity->setSlug(strtolower(new AsciiSlugger()->slug($entity->getTitre())));
             $this->entityManager->flush();
