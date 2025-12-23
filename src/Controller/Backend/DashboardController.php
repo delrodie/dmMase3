@@ -3,6 +3,7 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Actualite;
+use App\Entity\Adhesion;
 use App\Entity\Comment;
 use App\Entity\Coordonnee;
 use App\Entity\Historique;
@@ -76,6 +77,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Comment', 'fa-solid fa-person-circle-question', Comment::class);
         yield MenuItem::linkToCrud('Actualités', 'fa-regular fa-newspaper', Actualite::class);
         yield MenuItem::linkToCrud('Coordonnées', 'fa-regular fa-address-book', Coordonnee::class);
+
+        yield MenuItem::section('');
+        yield MenuItem::section('Adhérents');
+        yield MenuItem::linkToCrud('Adhésion', 'fa-regular fa-address-book', Adhesion::class);
 
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');
