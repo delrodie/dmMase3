@@ -8,6 +8,7 @@ use App\Entity\Chiffre;
 use App\Entity\Comment;
 use App\Entity\Coordonnee;
 use App\Entity\Historique;
+use App\Entity\Maintenance;
 use App\Entity\Management;
 use App\Entity\Partenaire;
 use App\Entity\PourQui;
@@ -84,6 +85,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Adhésion', 'fa-solid fa-person-circle-plus', Adhesion::class);
         yield MenuItem::linkToCrud('Chiffres', 'fa-solid fa-calculator', Chiffre::class);
 
+        yield MenuItem::section('');
+        yield MenuItem::section('Paramètres');
+        yield MenuItem::linkToCrud('Maintenance', 'fa-solid fa-person-digging', Maintenance::class);
         yield MenuItem::section('');
         yield MenuItem::section('Sécurité');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class);
