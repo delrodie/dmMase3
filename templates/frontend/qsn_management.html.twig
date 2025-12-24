@@ -5,17 +5,36 @@
 
         <section class="page" id="page" style="margin-top:100px">
             <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="linear">
-                {% if article %}
+                {% if articles %}
 
-                    <h3 class="fw-lighter text-uppercase my-4">{{ article ? article.titre }}</h3>
-                    <div class="position-relative">
-                        {% if article and article.media %}
-                            <figure class="overflow-hidden position-relative">
-                                <img src="{{ asset('uploads/qsn/' ~ article.media) }}" alt="{{ article.media }}" class="img-fluid float-start me-3" style="max-width:500px ">
-                                {{ article ? article.contenu|raw  }}
-                            </figure>
-                        {% endif %}
-                    </div>
+                    {% for article in articles %}
+                        <div class="row row-cols-1 row-cols-md-2 g-4 d-flex justify-content-center align-items-center align-content-center">
+                            {% if loop.first %}
+                                <div class="col order-1 order-md-0">
+                                    <h3 class="h3 fw-bold mb-4" style="font-family: var(--text-family-poppins)">{{article.titre}}</h3>
+                                    <div class="section-content" style="text-align: justify;">
+                                        {{ article.contenu|raw }}
+                                    </div>
+                                </div>
+                                <div class="col order-0 order-md-1 mb-md-5" data-aos="fade-up" data-aos-duration="3000">
+                                    <div class="presentation-illustration">
+                                        <figure class="overflow-hidden">
+                                            <img src="{{ asset('uploads/qsn/' ~ article.media) }}" alt="{{ article.titre }}" class="img-fluid">
+                                        </figure>
+                                    </div>
+                                </div>
+
+                                {% else %}
+                                    <div class="col order-1 order-md-0 w-100 mt-3">
+                                        <h3 class="h3 fw-bold mb-4" style="font-family: var(--text-family-poppins)">{{article.titre}}</h3>
+                                        <div class="section-content" style="text-align: justify;">
+                                            {{ article.contenu|raw }}
+                                        </div>
+                                    </div>
+                            {% endif %}
+
+                        </div>
+                    {% endfor %}
 
                 {% else %}
 
@@ -35,6 +54,6 @@
 {% endblock %}
 
 {% block title %}
-    {{ article ? article.titre  }}
+    Qui sommes-nous ?
 {% endblock %}
 

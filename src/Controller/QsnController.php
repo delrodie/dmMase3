@@ -17,7 +17,7 @@ class QsnController extends AbstractController
     public function management(ManagementRepository $managementRepository): Response
     {
         return $this->render('frontend/qsn_management.html.twig',[
-            'article' => $managementRepository->findOneBy(['statut' => true],['id' => 'DESC']),
+            'articles' => $managementRepository->findBy(['statut' => true]),
         ]);
     }
 
