@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Accueil {% endblock %}
+{% block title %}MASE Côte d'Ivoire {% endblock %}
 {% block body %}
     <main>
         <section class="slider" id="slider">
@@ -98,28 +98,30 @@
             </section>
         {% endif %}
 
-        <section class="statistiques" id="statistiques">
-            <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">
-                <h3 class="fw-lighter text-uppercase text-center my-5">Nos chiffres</h3>
-                <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center align-content-center">
-                    <div class="col statistiques-item">
-                        <div class="card h-100 rounded-0 border">
-                            <div class="card-body text-center my-5">
-                                <h2 class="fw-semibold" style="font-family: var(--text-family-poppins)">000</h2>
-                                <div class="card-text fw-light mt-3">Adhérents Mase</div>
+        {% if chiffre %}
+            <section class="statistiques" id="statistiques">
+                <div class="container my-5" data-aos="fade-up" data-aos-duration="3000" data-aos-easing="ease-in-out">
+                    <h3 class="fw-lighter text-uppercase text-center my-5">Nos chiffres</h3>
+                    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-items-center align-content-center">
+                        <div class="col statistiques-item">
+                            <div class="card h-100 rounded-0 border">
+                                <div class="card-body text-center my-5">
+                                    <h2 class="fw-semibold" style="font-family: var(--text-family-poppins)">{{ chiffre.adherente }}</h2>
+                                    <div class="card-text fw-light mt-3">Adhérents Mase</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col statistiques-item">
-                        <div class="card h-100 rounded-0 border">
-                            <div class="card-body text-center my-5">
-                                <h2 class="fw-semibold" style="font-family: var(--text-family-poppins)">000</h2>
-                                <div class="card-text fw-light mt-3">Entreprises certifiées</div>
+                        <div class="col statistiques-item">
+                            <div class="card h-100 rounded-0 border">
+                                <div class="card-body text-center my-5">
+                                    <h2 class="fw-semibold" style="font-family: var(--text-family-poppins)">{{ chiffre.certifiee }}</h2>
+                                    <div class="card-text fw-light mt-3">Entreprises certifiées</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        {% endif %}
     </main>
 {% endblock %}

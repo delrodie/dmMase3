@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Repository\ActualiteRepository;
+use App\Repository\ChiffreRepository;
 use App\Repository\ManagementRepository;
 use App\Repository\PartenaireRepository;
 use App\Repository\SlideRepository;
@@ -18,7 +19,8 @@ class HomeController extends AbstractController
         private readonly SlideRepository $slideRepository,
         private readonly ManagementRepository $managementRepository,
         private readonly ActualiteRepository $actualiteRepository,
-        private readonly PartenaireRepository $partenaireRepository
+        private readonly PartenaireRepository $partenaireRepository,
+        private readonly ChiffreRepository $chiffreRepository
     )
     {
     }
@@ -30,7 +32,8 @@ class HomeController extends AbstractController
             'slides' => $this->slideRepository->findBy(['statut' => true], ['ordre' => 'ASC']),
             'partenaires' => $this->partenaireRepository->findBy(['statut' => true]),
             'management' => $this->managementRepository->findOneBy(['statut' => true],['id' => "DESC"]),
-            'actualites' => $this->actualiteRepository->findBy(['actif' => true], ['id' => "DESC"])
+            'actualites' => $this->actualiteRepository->findBy(['actif' => true], ['id' => "DESC"]),
+            'chiffre' => $this->chiffreRepository->findOneBy(['actif' => true], ['id' => "DESC"])
         ]);
     }
 }
